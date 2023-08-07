@@ -1,2 +1,3 @@
 class Consts:
-    datamaker_foler = "RomanDictionaryMaker/DataMaker_Th/"
+    datamaker_folder = "RomanDictionaryMaker/DataMaker/"
+    data_folder = "RomanDictionaryMaker/Data/"
