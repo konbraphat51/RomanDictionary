@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from RomanDictionaryMaker.Utils import Consts
+from RomanDictionary.Utils import Consts
 from pythainlp.transliterate import romanize
 
 class DataMaker_Th:
@@ -49,7 +49,7 @@ class DataMaker_Th:
     
         return df
         
-    def sort_alphabetically(df, should_save = True):
+    def sort_alphabetically(df, should_save = False):
         #sort by Eng
         df_sorted_eng = df.copy().sort_values(by=["Eng"])
         
@@ -60,18 +60,20 @@ class DataMaker_Th:
         df_sorted_th = df.copy().sort_values(by=["Th"])
         
         if should_save:
-            df_sorted_eng.to_csv(Consts.data_folder + "1_Th.csv", index=False)
-            df_sorted_romanized.to_csv(Consts.data_folder + "romanized_Th.csv", index=False)
-            df_sorted_th.to_csv(Consts.data_folder + "0_Th.csv", index=False)
+            df_sorted_eng.to_csv(Consts.datamaker_folder + "1_Th.csv", index=False)
+            df_sorted_romanized.to_csv(Consts.datamaker_folder + "romanized_Th.csv", index=False)
+            df_sorted_th.to_csv(Consts.datamaker_folder + "0_Th.csv", index=False)
     
         return df_sorted_eng, df_sorted_romanized, df_sorted_th
     
-    def run(output = [False, False, True]):
-        df_list_simple = DataMaker_Th.scrape(should_save=output[0])
-        df_romanized = DataMaker_Th.romanize_df(df_list_simple, should_save=output[1])
-        df_sorted_eng, df_sorted_romanized, df_sorted_th = DataMaker_Th.sort_alphabetically(df_romanized, should_save=output[2])
+    def run():
+        df_list_simple = DataMaker_Th.scrape()
+        df_romanized = DataMaker_Th.romanize_df(df_list_simple)
+        df_sorted_eng, df_sorted_romanized, df_sorted_th = DataMaker_Th.sort_alphabetically(df_romanized)
         
-        return df_sorted_eng, df_sorted_romanized, df_sorted_th
+        df_sorted_eng = df_sorted_eng.to_csv(Consts.data_folder + "Th2Eng.csv", index=False)
+        
+        return df_sorted_eng
     
 if __name__ == "__main__":
     DataMaker_Th.run()
