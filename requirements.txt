@@ -2,7 +2,7 @@ pandas
 gradio
 
 #DataMaker
-requests
-BeautifulSoup
-pythainlp
-torch
+# requests
+# BeautifulSoup
+# pythainlp
+# torch
