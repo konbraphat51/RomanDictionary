@@ -48,8 +48,8 @@ class Searcher:
         #calc
         for cnt_i in range(1, i_n):
             for cnt_a in range(1, a_n):
-                a_add_cost = dp[cnt_i][cnt_a-1] + self.cost_add(_a[cnt_a])
-                i_add_cost = dp[cnt_i-1][cnt_a] + self.cost_add(_i[cnt_i])
+                a_add_cost = dp[cnt_i][cnt_a-1] + self.cost_add(_a[cnt_a], _a[cnt_a-1])
+                i_add_cost = dp[cnt_i-1][cnt_a] + self.cost_add(_i[cnt_i], _i[cnt_i-1])
                 change_cost = dp[cnt_i-1][cnt_a-1] + self.cost_change(_i[cnt_i], _i[cnt_i-1], _a[cnt_a], _a[cnt_a-1])
 
                 dp[cnt_i][cnt_a] = min(a_add_cost, i_add_cost, change_cost)
@@ -64,8 +64,11 @@ class Searcher:
         else:
             return 1.0
     
-    def cost_add(self, letter):
-        return 1.0
+    def cost_add(self, letter, letter_former):
+        if letter == letter_former:
+            return 0.5
+        else:
+            return 1.0
 
 if __name__ == "__main__":
     searcher = Searcher()
