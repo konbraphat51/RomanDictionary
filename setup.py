@@ -4,7 +4,7 @@ import os
 from setuptools import find_packages, setup
 
 def read_requirements(path):
-    with open("requirements.xt") as req:
+    with open("requirements.txt") as req:
         content = req.read()
         reqs = content.split("\n")
         
