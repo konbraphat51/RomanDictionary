@@ -1,5 +1,4 @@
 import pandas as pd
-from tqdm import tqdm
 from RomanDictionary.Utils import Consts
 
 class Searcher:
@@ -9,7 +8,7 @@ class Searcher:
     def search(self, input_word, column, top_n=10):
         target_column = self.df[column]
         distances = [10000.0]*len(target_column)
-        for cnt in tqdm(range(len(target_column))):
+        for cnt in range(len(target_column)):
             distances[cnt] = self.calc_distance(input_word, target_column[cnt])
         
         df_with_distance = self.df.copy()
