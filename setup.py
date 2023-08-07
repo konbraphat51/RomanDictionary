@@ -19,4 +19,5 @@ setup(
     author="konbraphat51",
     packages=find_packages(),
     install_requires=read_requirements("requirements.txt"),
+    include_package_data=True,
 )
