@@ -1,1 +1,8 @@
 pandas
+gradio
+
+#DataMaker
+requests
+BeautifulSoup
+pythainlp
+torch

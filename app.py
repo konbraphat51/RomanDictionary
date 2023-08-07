@@ -1,5 +1,5 @@
 import gradio as gr
-from RomanDictionary.Seacher import Searcher
+from .RomanDictionary.Seacher import Searcher
 
 searcher = Searcher()
 
