@@ -1,9 +1,17 @@
 from pathlib import Path
+import os
 
 class Consts:
     datamaker_folder = "RomanDictionary/DataMaker/"
     data_folder = "RomanDictionary/Data/"
+    slash = "/"
 
-library_dir = Path(__file__).parent.parent
-Consts.datamaker_folder = str(library_dir / "DataMaker/") + "\\"
-Consts.data_folder = str(library_dir / "Data/") + "/"
+if os.name == "nt":
+    Consts.slash = "\\"
+else:
+    Consts.slash = "/"
+
+library_dir = str(Path(__file__).parent.parent.resolve()) + Consts.slash
+
+Consts.datamaker_folder = library_dir + "DataMaker" + Consts.slash
+Consts.data_folder = library_dir + "Data" + Consts.slash
