@@ -13,11 +13,12 @@ def read_requirements(path):
 
 setup(
     name="RomanDictionary",
-    version="0.1",
+    version="0.1.1",
     description="Dictionary which can search by romanized word",
     url="https://github.com/konbraphat51/RomanDictionary",
     author="konbraphat51",
     packages=find_packages(),
     install_requires=read_requirements("requirements.txt"),
     include_package_data=True,
+    package_data={'RomanDictionary': ['Data/*']}
 )
